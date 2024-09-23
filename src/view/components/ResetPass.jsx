@@ -5,7 +5,7 @@ import { reset } from "../../services/authService";
 const ResetPass = () => {
   const [step, setStep] = useState(1);
   const [email, setEmail] = useState("");
-  const [oldPassword, setOldPassword] = useState("");
+  // const [oldPassword, setOldPassword] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
 
@@ -70,7 +70,7 @@ const ResetPass = () => {
 
         {step === 2 && (
           <form onSubmit={handlePasswordSubmit}>
-            <div className="mb-6">
+            {/* <div className="mb-6">
               <label className="block text-gray-700 dark:text-gray-200 text-sm font-semibold mb-2" htmlFor="otp">
                 Old Password
               </label>
@@ -83,7 +83,7 @@ const ResetPass = () => {
                 onChange={(e) => setOldPassword(e.target.value)}
                 required
               />
-            </div>
+            </div> */}
             <div className="mb-6">
               <label
                 className="block text-gray-700 dark:text-gray-200 text-sm font-semibold mb-2"
