@@ -11,6 +11,7 @@ import Protected from "./view/protected/Protected";
 import Profile from "./view/screens/Profile";
 
 import {Context} from "./context/Context";
+import Contact from "./view/screens/Contact";
 
 function App() {
 
@@ -22,6 +23,7 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/login" element={<LoginPage />} />
           <Route path="/signup" element={<Register />} />
+          <Route path="/contact" element={<Contact />} />
           <Route path="/todo" element={<Protected Component={ToDo} />} />
           <Route
             path="/dealform"
