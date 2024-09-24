@@ -8,18 +8,21 @@ const AuthContext = createContext();
 export const Context = ({ children }) => {
   const [user, setUser] = useState(null); // Initial state as null
   const [loading, setLoading] = useState(true); // Start as true since you're fetching data
-  const [isAuthenticed, setIsAuthenticated] = useState(false);
-
+  // const [isAuthenticed, setIsAuthenticated] = useState(false);
+  const saveUser = (userData) => {
+    setUser(userData)
+  }
+   
   useEffect(() => {
     const loadUser = async () => {
       console.log("loadUser called");
       setLoading(true); // Show loading
       try {
         const userData = await getUser(); // Fetch user data from backend
-        console.log("userData in loadUser:>> ", userData);
-        if(userData) {
-          setIsAuthenticated(true);
-        }
+        // console.log("userData in loadUser:>> ", userData);
+        // if(userData) {
+        //   setIsAuthenticated(true);
+        // }
         setUser(userData); // Update the user state
       } catch (error) {
         console.error("Failed to load user:", error);
@@ -27,7 +30,6 @@ export const Context = ({ children }) => {
         setLoading(false); // Hide loading once done
       }
     };
-
     // Call the loadUser function to fetch user data
     loadUser();
   }, []);
@@ -38,9 +40,9 @@ export const Context = ({ children }) => {
       console.log("user :", user);
     }
   }, [user]);
-
+  
   return (
-    <AuthContext.Provider value={{ user, loading }}>
+    <AuthContext.Provider value={{ user, loading, saveUser }}>
       {children}
     </AuthContext.Provider>
   );

@@ -1,25 +1,27 @@
 import { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { logout } from '../../services/authService';
+import { useAuth } from '../../context/Context';
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
-
+  const {user, saveUser} = useAuth();
   const navigate = useNavigate();
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);
   };
 
-  useEffect(() => {
-    const user = JSON.parse(localStorage.getItem('user'));
-    setIsAuthenticated(!!user);
-  }, []);
+  // useEffect(() => {
+  //   const user = JSON.parse(localStorage.getItem('user'));
+  //   setIsAuthenticated(!!user);
+  // }, []);
 
   const handleLogout = () => {
     logout();
-    localStorage.removeItem('user');
+    // localStorage.removeItem('user');
+    saveUser(null)
     setIsAuthenticated(false);
     navigate('/login');
   };
@@ -53,7 +55,7 @@ const Navbar = () => {
               Profile
             </Link> */}
 
-            {isAuthenticated ? (
+            {user ? (
               <button
                 onClick={handleLogout}
                 className="block bg-blue-500 text-white px-4 py-2 mt-2 rounded-lg hover:bg-blue-600 transition duration-300"
