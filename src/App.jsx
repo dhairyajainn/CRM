@@ -1,5 +1,5 @@
 import "./App.css";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import LoginPage from "./view/components/Login";
 import Home from "./view/screens/Home";
 import Register from "./view/components/Register";
@@ -14,28 +14,40 @@ import ContactUs from "./view/screens/ContactUs";
 import { Context } from "./context/Context";
 // import Sidebar from "./view/components/SideBar";
 
+// Example authentication check (replace with your actual logic)
+const isAuthenticated = localStorage.getItem("user");
+
 function App() {
   return (
     <Context>
       <BrowserRouter>
-        <NavBar/>
+        <NavBar />
         <Routes>
+          {/* Home page is public */}
           <Route path="/" element={<Home />} />
+
+          {/* Public routes */}
           <Route path="/contactus" element={<ContactUs />} />
           <Route path="/login" element={<LoginPage />} />
           <Route path="/signup" element={<Register />} />
-          <Route path="/todo" element={<Protected Component={ToDo} />} />
+
+          {/* Protected routes (require authentication) */}
+          <Route
+            path="/todo"
+            element={isAuthenticated ? <Protected Component={ToDo} /> : <Navigate to="/login" />}
+          />
           <Route
             path="/dealform"
-            element={<Protected Component={DealForm} />}
+            element={isAuthenticated ? <Protected Component={DealForm} /> : <Navigate to="/login" />}
           />
-          <Route path="/profile" element={<Protected Component={Profile} />} />
+          <Route
+            path="/profile"
+            element={isAuthenticated ? <Protected Component={Profile} /> : <Navigate to="/login" />}
+          />
           <Route
             path="/resetpassword"
-            element={<Protected Component={ResetPass} />}
+            element={isAuthenticated ? <Protected Component={ResetPass} /> : <Navigate to="/login" />}
           />
-          {/* <Route path='/resetpassword' element={<ResetPass />} /> */}
-          {/* <Route path="/sidebar" element={<Sidebar />} /> */}
         </Routes>
       </BrowserRouter>
     </Context>
