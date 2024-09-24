@@ -9,10 +9,10 @@ const Landing = () => {
                 {/* Text Section */}
                 <div className="flex-1 text-center md:text-left md:pr-8">
                     <h1 className="text-3xl md:text-5xl font-bold mb-4">
-                        Welcome to Our Home Page
+                    Welcome to Our CRM Platform
                     </h1>
                     <p className="text-gray-700 mb-6 text-base md:text-lg">
-                        This is a brief description of our website. Here you can find various resources and information that may be useful to you.
+                    Explore our CRM platform designed to streamline your business operations. Discover tools, resources, and insights to help you manage relationships, boost productivity, and grow your business efficiently.
                     </p>
                     <Link
                         to="/get-started"
