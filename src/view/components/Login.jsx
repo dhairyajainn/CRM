@@ -2,12 +2,15 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { login } from '../../services/authService';
 import { useNavigate } from 'react-router-dom';
+// import { useAuth } from '../../context/Context';
 
 const LoginPage = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
   const navigate = useNavigate();
+  // const {user} = useAuth()
+  // const {isAuthenticated, setIsAuthenticated} = useState(user);
 
   const handleSubmit = async (e) => {
     e.preventDefault();

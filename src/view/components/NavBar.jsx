@@ -43,8 +43,8 @@ const Navbar = () => {
             <Link to="/todo" className="text-gray-600 dark:text-gray-200 hover:text-blue-500 transition duration-300">
               Todo
             </Link>
-            <Link to="/contact" className="text-gray-600 dark:text-gray-200 hover:text-blue-500 transition duration-300">
-              Contact
+            <Link to="/contactus" className="text-gray-600 dark:text-gray-200 hover:text-blue-500 transition duration-300">
+              Contact Us
             </Link>
             <Link to="/profile" className="text-gray-600 dark:text-gray-200 hover:text-blue-500 transition duration-300">
               Profile

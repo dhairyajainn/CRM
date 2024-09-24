@@ -40,11 +40,10 @@ const ToDo = () => {
       }
     }
   };
-  
 
   const moveTask = (task, from, to) => {
     setTasks((prevTasks) => {
-      const fromTasks = prevTasks[from].filter((t) => t.text !== task.text);
+      const fromTasks = prevTasks[from].filter((t) => t.title !== task.title);
       const toTasks = [...prevTasks[to], task];
       return {
         ...prevTasks,
@@ -64,7 +63,7 @@ const ToDo = () => {
 
   const startEditing = (task, section) => {
     setEditTask({ ...task, section });
-    setEditInput(task.text);
+    setEditInput(task.title);  // Change from task.text to task.title
     setEditPriority(task.priority);
   };
 
@@ -72,9 +71,9 @@ const ToDo = () => {
     if (editInput.trim()) {
       setTasks((prevTasks) => {
         const fromTasks = prevTasks[editTask.section].filter(
-          (t) => t.text !== editTask.text
+          (t) => t.title !== editTask.title  // Change from task.text to task.title
         );
-        const updatedTask = { text: editInput, priority: editPriority };
+        const updatedTask = { title: editInput, priority: editPriority };  // Change text to title
         return {
           ...prevTasks,
           [editTask.section]: [...fromTasks, updatedTask]
@@ -187,10 +186,10 @@ const ToDo = () => {
             >
               <div className="space-y-4 h-96 overflow-y-auto">
                 {tasks[section].map((task) => (
-                  <Draggable key={task.text}>
+                  <Draggable key={task.title}> {/* Changed key to task.title */}
                     <div className="flex justify-between items-center p-3 bg-white rounded-md shadow-sm">
                       <span className="font-medium text-gray-700">
-                        {task.text}{' '}
+                        {task.title}{' '}
                         <span
                           className={`ml-2 text-sm ${
                             task.priority === 'High'

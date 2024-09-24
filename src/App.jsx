@@ -9,21 +9,21 @@ import DealForm from "./view/components/DealForm";
 import ResetPass from "./view/components/ResetPass";
 import Protected from "./view/protected/Protected";
 import Profile from "./view/screens/Profile";
+import ContactUs from "./view/screens/ContactUs";
 
-import {Context} from "./context/Context";
-import Contact from "./view/screens/Contact";
+import { Context } from "./context/Context";
+// import Sidebar from "./view/components/SideBar";
 
 function App() {
-
   return (
     <Context>
       <BrowserRouter>
-        <NavBar />
+        <NavBar/>
         <Routes>
           <Route path="/" element={<Home />} />
+          <Route path="/contactus" element={<ContactUs />} />
           <Route path="/login" element={<LoginPage />} />
           <Route path="/signup" element={<Register />} />
-          <Route path="/contact" element={<Contact />} />
           <Route path="/todo" element={<Protected Component={ToDo} />} />
           <Route
             path="/dealform"
@@ -35,6 +35,7 @@ function App() {
             element={<Protected Component={ResetPass} />}
           />
           {/* <Route path='/resetpassword' element={<ResetPass />} /> */}
+          {/* <Route path="/sidebar" element={<Sidebar />} /> */}
         </Routes>
       </BrowserRouter>
     </Context>

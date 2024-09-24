@@ -8,6 +8,7 @@ const AuthContext = createContext();
 export const Context = ({ children }) => {
   const [user, setUser] = useState(null); // Initial state as null
   const [loading, setLoading] = useState(true); // Start as true since you're fetching data
+  const [isAuthenticed, setIsAuthenticated] = useState(false);
 
   useEffect(() => {
     const loadUser = async () => {
@@ -16,6 +17,9 @@ export const Context = ({ children }) => {
       try {
         const userData = await getUser(); // Fetch user data from backend
         console.log("userData in loadUser:>> ", userData);
+        if(userData) {
+          setIsAuthenticated(true);
+        }
         setUser(userData); // Update the user state
       } catch (error) {
         console.error("Failed to load user:", error);
