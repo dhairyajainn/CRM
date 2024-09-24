@@ -5,7 +5,7 @@ import { reset } from "../../services/authService";
 const ResetPass = () => {
   const [step, setStep] = useState(1);
   const [email, setEmail] = useState("");
-  // const [oldPassword, setOldPassword] = useState("");
+  const [oldPassword, setOldPassword] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
 
