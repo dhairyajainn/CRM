@@ -15,7 +15,7 @@ const Landing = () => {
                     Explore our CRM platform designed to streamline your business operations. Discover tools, resources, and insights to help you manage relationships, boost productivity, and grow your business efficiently.
                     </p>
                     <Link
-                        to="/get-started"
+                        to="/login"
                         className="bg-green-500 text-white py-2 px-6 rounded hover:bg-green-600 transition duration-200 inline-block"
                     >
                         Get Started

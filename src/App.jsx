@@ -12,10 +12,13 @@ import Profile from "./view/screens/Profile";
 import ContactUs from "./view/screens/ContactUs";
 
 import { Context } from "./context/Context";
+import AboutUs from "./view/screens/AboutUs";
+import Footer from "./view/components/Footer";
 // import Sidebar from "./view/components/SideBar";
 
 // Example authentication check (replace with your actual logic)
 const isAuthenticated = localStorage.getItem("user");
+
 
 function App() {
   return (
@@ -30,6 +33,7 @@ function App() {
           <Route path="/contactus" element={<ContactUs />} />
           <Route path="/login" element={<LoginPage />} />
           <Route path="/signup" element={<Register />} />
+          <Route path="/aboutus" element={<AboutUs />} />
 
           {/* Protected routes (require authentication) */}
           <Route
@@ -49,6 +53,7 @@ function App() {
             element={isAuthenticated ? <Protected Component={ResetPass} /> : <Navigate to="/login" />}
           />
         </Routes>
+        <Footer />
       </BrowserRouter>
     </Context>
   );

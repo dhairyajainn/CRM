@@ -37,18 +37,21 @@ const Navbar = () => {
             <Link to="/" className="text-gray-600 dark:text-gray-200 hover:text-blue-500 transition duration-300">
               Home
             </Link>
-            <Link to="/dealform" className="text-gray-600 dark:text-gray-200 hover:text-blue-500 transition duration-300">
+            {/* <Link to="/dealform" className="text-gray-600 dark:text-gray-200 hover:text-blue-500 transition duration-300">
               Pipeline
             </Link>
             <Link to="/todo" className="text-gray-600 dark:text-gray-200 hover:text-blue-500 transition duration-300">
               Todo
-            </Link>
+            </Link> */}
             <Link to="/contactus" className="text-gray-600 dark:text-gray-200 hover:text-blue-500 transition duration-300">
               Contact Us
             </Link>
-            <Link to="/profile" className="text-gray-600 dark:text-gray-200 hover:text-blue-500 transition duration-300">
-              Profile
+            <Link to="/aboutus" className="text-gray-600 dark:text-gray-200 hover:text-blue-500 transition duration-300">
+              About Us
             </Link>
+            {/* <Link to="/profile" className="text-gray-600 dark:text-gray-200 hover:text-blue-500 transition duration-300">
+              Profile
+            </Link> */}
 
             {isAuthenticated ? (
               <button
@@ -83,13 +86,13 @@ const Navbar = () => {
             <Link to="/" className="block text-gray-600 dark:text-gray-200 px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-700">
               Home
             </Link>
-            <Link to="/dealform" className="block text-gray-600 dark:text-gray-200 px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-700">
+            {/* <Link to="/dealform" className="block text-gray-600 dark:text-gray-200 px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-700">
               Pipeline
             </Link>
             <Link to="/todo" className="block text-gray-600 dark:text-gray-200 px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-700">
               Todo
-            </Link>
-            <Link to="/contact" className="block text-gray-600 dark:text-gray-200 px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-700">
+            </Link> */}
+            <Link to="/contactus" className="block text-gray-600 dark:text-gray-200 px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-700">
               Contact
             </Link>
             {isAuthenticated ? (
