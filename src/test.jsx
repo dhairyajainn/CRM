@@ -2,7 +2,7 @@ import React from 'react'
 
 const test = () => {
   return (
-    <div>test from nitesh</div>
+    <div>test from Dhairya</div>
   )
 }
 
