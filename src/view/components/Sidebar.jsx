@@ -32,7 +32,7 @@ const Sidebar = () => {
             <Link to="/dealform">Deal Form</Link>
           </li>
           <li className="p-3 hover:bg-gray-700">
-            <Link to="/contactus">Contact Us</Link>
+            <Link to="/contactlist">Contact</Link>
           </li>
           <li className="p-3 hover:bg-gray-700">
             <Link to="/resetpassword">Reset Password</Link>
