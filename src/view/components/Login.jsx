@@ -22,9 +22,7 @@ const LoginPage = () => {
       alert(error);
     }
   };
-function sdf() {
-  sdf
-}
+
   return (
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-r from-purple-400 to-blue-500">
       <div className="w-full max-w-md bg-white dark:bg-gray-800 shadow-lg rounded-lg p-8">
