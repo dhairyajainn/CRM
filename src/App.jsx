@@ -74,9 +74,17 @@ function App() {
               </Layout>
             }
           />
+          <Route
+            path="/contactus"
+            element={
+              <Layout>
+                <ContactUs />
+              </Layout>
+            }
+          />
 
           {/* Public routes */}
-          <Route path="/contactus" element={<ContactUs />} />
+          {/* <Route path="/contactus" element={<ContactUs />} /> */}
           <Route path="/login" element={<LoginPage />} />
           <Route path="/signup" element={<Register />} />
           <Route path="/aboutus" element={<AboutUs />} />
