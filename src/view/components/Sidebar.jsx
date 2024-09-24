@@ -20,7 +20,7 @@ const Sidebar = () => {
       <nav className="flex-grow">
         <ul className="mt-4">
           <li className="p-3 hover:bg-gray-700">
-            <Link to="/">Home</Link>
+            <Link to="/dashboard">Dashboard</Link>
           </li>
           <li className="p-3 hover:bg-gray-700">
             <Link to="/profile">Profile</Link>

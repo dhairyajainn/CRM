@@ -20,7 +20,7 @@ const LoginPage = () => {
       saveUser(userData);
       
       // localStorage.setItem('user', JSON.stringify(userData));
-      navigate('/home');
+      navigate('/dashboard');
     } catch (error) {
       console.log(error);
     }

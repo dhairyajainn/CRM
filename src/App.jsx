@@ -18,6 +18,7 @@ import { Context } from "./context/Context";
 import { useAuth } from "./context/Context";
 import Layout from "./view/components/Layout";
 import Landing from "./view/components/Landing";
+import Dashboard from "./view/components/Dashboard";
 
 // Example authentication check (replace with your actual logic)
 // const isAuthenticated = localStorage.getItem("user");
@@ -34,10 +35,10 @@ function App() {
           {/* Home page is public */}
           <Route path="/" element={<Landing />} />
           <Route
-            path="/home"
+            path="/dashboard"
             element={
               <Layout>
-                <Home />
+                <Dashboard />
               </Layout>
             }
           />

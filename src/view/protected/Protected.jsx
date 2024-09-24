@@ -12,7 +12,7 @@ const Protected = ({Component}) => {
         }
     }, [navigate])
   return (
-    <div>
+    <div> 
         <Component />
     </div>
   )

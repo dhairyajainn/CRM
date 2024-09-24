@@ -1,13 +1,20 @@
-import React from 'react'
-import Sidebar from './SideBar'
+import React from 'react';
+import Sidebar from './SideBar';
 
-const Layout = ({children}) => {
+const Layout = ({ children }) => {
   return (
-    <div className='flex '> 
+    <div className="flex min-h-screen">
+      {/* Sidebar Section */}
+      <div className="w-1/4 bg-gray-800 text-white min-h-screen hidden md:block">
         <Sidebar />
-        <div>{children}</div>
+      </div>
+
+      {/* Main Content Section */}
+      <div className="flex-1 bg-gray-100 p-4">
+        {children}
+      </div>
     </div>
-  )
+  );
 }
 
-export default Layout
+export default Layout;
