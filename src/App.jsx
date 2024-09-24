@@ -41,6 +41,38 @@ function App() {
               </Layout>
             }
           />
+          <Route
+            path="/profile"
+            element={
+              <Layout>
+                <Profile />
+              </Layout>
+            }
+          />
+          <Route
+            path="/todo"
+            element={
+              <Layout>
+                <ToDo />
+              </Layout>
+            }
+          />
+          <Route
+            path="/dealform"
+            element={
+              <Layout>
+                <DealForm />
+              </Layout>
+            }
+          />
+          <Route
+            path="/resetpassword"
+            element={
+              <Layout>
+                <ResetPass />
+              </Layout>
+            }
+          />
 
           {/* Public routes */}
           <Route path="/contactus" element={<ContactUs />} />
@@ -49,16 +81,16 @@ function App() {
           <Route path="/aboutus" element={<AboutUs />} />
 
           {/* Protected routes (require authentication) */}
-          <Route path="/todo" element={<Protected Component={ToDo} />} />
-          <Route
+          {/* <Route path="/todo" element={<Protected Component={ToDo} />} /> */}
+          {/* <Route
             path="/dealform"
             element={<Protected Component={DealForm} />}
-          />
-          <Route path="/profile" element={<Layout><Profile /></Layout>} />
-          <Route
+          /> */}
+          {/* <Route path="/profile" element={<Layout><Profile /></Layout>} /> */}
+          {/* <Route
             path="/resetpassword"
             element={<Protected Component={ResetPass} />}
-          />
+          /> */}
           {/* <Route path="/sidebar" element={<Protected Component={Sidebar} />} /> */}
         </Routes>
         <Footer />
