@@ -15,12 +15,14 @@ const LoginPage = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
+      console.log("handle login called")
       const userData = await login(email, password);
       saveUser(userData);
+      
       // localStorage.setItem('user', JSON.stringify(userData));
-      navigate('/');
+      navigate('/home');
     } catch (error) {
-      alert(error);
+      console.log(error);
     }
   };
 

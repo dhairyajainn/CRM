@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { logout } from '../../services/authService';
 import { useAuth } from '../../context/Context';
@@ -97,7 +97,7 @@ const Navbar = () => {
             <Link to="/contactus" className="block text-gray-600 dark:text-gray-200 px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-700">
               Contact
             </Link>
-            {isAuthenticated ? (
+            {user ? (
               <button
                 onClick={handleLogout}
                 className="block bg-blue-500 text-white px-4 py-2 mt-2 rounded-lg hover:bg-blue-600 transition duration-300"

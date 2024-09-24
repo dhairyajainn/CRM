@@ -2,7 +2,7 @@ import Landing from '../components/Landing'
 const Home = () => {
   return (
     <div>
-      <Landing />
+      this is home page
     </div>
   )
 }

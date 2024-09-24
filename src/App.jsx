@@ -1,5 +1,5 @@
 import "./App.css";
-import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import LoginPage from "./view/components/Login";
 import Home from "./view/screens/Home";
 import Register from "./view/components/Register";
@@ -10,24 +10,37 @@ import ResetPass from "./view/components/ResetPass";
 import Protected from "./view/protected/Protected";
 import Profile from "./view/screens/Profile";
 import ContactUs from "./view/screens/ContactUs";
-
-import { Context } from "./context/Context";
 import AboutUs from "./view/screens/AboutUs";
 import Footer from "./view/components/Footer";
-// import Sidebar from "./view/components/SideBar";
+import Sidebar from "./view/components/SideBar";
+
+import { Context } from "./context/Context";
+import { useAuth } from "./context/Context";
+import Layout from "./view/components/Layout";
+import Landing from "./view/components/Landing";
 
 // Example authentication check (replace with your actual logic)
-const isAuthenticated = localStorage.getItem("user");
-
+// const isAuthenticated = localStorage.getItem("user");
 
 function App() {
+  // const { user } = useAuth();
+
+  // console.log("User app", user);
   return (
     <Context>
       <BrowserRouter>
-        <NavBar />
+        {/* {user ? <Sidebar /> : <NavBar />} */}
         <Routes>
           {/* Home page is public */}
-          <Route path="/" element={<Home />} />
+          <Route path="/" element={<Landing />} />
+          <Route
+            path="/home"
+            element={
+              <Layout>
+                <Home />
+              </Layout>
+            }
+          />
 
           {/* Public routes */}
           <Route path="/contactus" element={<ContactUs />} />
@@ -36,22 +49,17 @@ function App() {
           <Route path="/aboutus" element={<AboutUs />} />
 
           {/* Protected routes (require authentication) */}
-          <Route
-            path="/todo"
-            element={isAuthenticated ? <Protected Component={ToDo} /> : <Navigate to="/login" />}
-          />
+          <Route path="/todo" element={<Protected Component={ToDo} />} />
           <Route
             path="/dealform"
-            element={isAuthenticated ? <Protected Component={DealForm} /> : <Navigate to="/login" />}
+            element={<Protected Component={DealForm} />}
           />
-          <Route
-            path="/profile"
-            element={isAuthenticated ? <Protected Component={Profile} /> : <Navigate to="/login" />}
-          />
+          <Route path="/profile" element={<Layout><Profile /></Layout>} />
           <Route
             path="/resetpassword"
-            element={isAuthenticated ? <Protected Component={ResetPass} /> : <Navigate to="/login" />}
+            element={<Protected Component={ResetPass} />}
           />
+          {/* <Route path="/sidebar" element={<Protected Component={Sidebar} />} /> */}
         </Routes>
         <Footer />
       </BrowserRouter>

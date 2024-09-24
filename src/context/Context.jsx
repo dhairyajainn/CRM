@@ -35,11 +35,11 @@ export const Context = ({ children }) => {
   }, []);
 
   // Debugging: log the user data after it's updated
-  useEffect(() => {
-    if (user) {
-      console.log("user :", user);
-    }
-  }, [user]);
+  // useEffect(() => {
+  //   if (user) {
+  //     // console.log("user :", user);
+  //   }
+  // }, [user]);
   
   return (
     <AuthContext.Provider value={{ user, loading, saveUser }}>
