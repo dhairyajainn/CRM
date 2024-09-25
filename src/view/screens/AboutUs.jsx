@@ -76,7 +76,7 @@ const AboutUs = () => {
                 <section className="text-center py-12 bg-green-500 text-white rounded-lg shadow-lg">
                     <h2 className="text-3xl font-bold mb-4">Join Us on Our Journey</h2>
                     <p className="text-lg mb-6 max-w-2xl mx-auto">
-                        Whether you're a small business looking to organize customer relationships or an enterprise aiming to optimize sales pipelines, we are here to help you succeed.
+                        Whether you are a small business looking to organize customer relationships or an enterprise aiming to optimize sales pipelines, we are here to help you succeed.
                     </p>
                     <Link to="/contactus" className="bg-white text-green-500 font-semibold py-3 px-6 rounded-lg shadow hover:bg-gray-100 transition duration-200">
                         Contact Us

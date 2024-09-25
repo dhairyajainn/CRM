@@ -15,7 +15,7 @@ const LoginPage = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      console.log("handle login called")
+      // console.log("handle login called")
       const userData = await login(email, password);
       saveUser(userData);
       
