@@ -1,6 +1,7 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Container, Draggable } from 'react-smooth-dnd';
-import { taskSave } from '../../services/taskService';
+import { getAllTasks, taskSave } from '../../services/taskService';
+
 
 const ToDo = () => {
   const [tasks, setTasks] = useState({
@@ -9,14 +10,15 @@ const ToDo = () => {
     done: []
   });
 
-  const [taskInput, setTaskInput] = useState('');
-  const [taskPriority, setTaskPriority] = useState('High');
+  const [title, setTitle] = useState('');
+  const [taskPriority, setTaskPriority] = useState('');
   const [editTask, setEditTask] = useState(null);
   const [editInput, setEditInput] = useState('');
-  const [editPriority, setEditPriority] = useState('Medium');
+  const [editPriority, setEditPriority] = useState('');
+
 
   const handleInputChange = (e) => {
-    setTaskInput(e.target.value);
+    setTitle(e.target.value);
   };
 
   const handlePriorityChange = (e) => {
@@ -24,17 +26,17 @@ const ToDo = () => {
   };
 
   const addTask = async () => {
-    if (taskInput.trim()) {
-      const newTask = { title: taskInput, priority: taskPriority };
+    if (title.trim()) {
   
       try {
-        await taskSave(newTask.title); // Only send the title
+        console.log('taskPriority', taskPriority)
+        await taskSave(title,taskPriority); // Only send the title
         setTasks((prevTasks) => ({
           ...prevTasks,
-          todo: [...prevTasks.todo, newTask]
+          todo: [...prevTasks.todo, {title,priority:taskPriority}]
         }));
-        setTaskInput('');
-        setTaskPriority('Medium');
+        setTitle('');
+        setTaskPriority('');
       } catch (error) {
         console.error("Failed to save task:", error);
       }
@@ -81,14 +83,14 @@ const ToDo = () => {
       });
       setEditTask(null);
       setEditInput('');
-      setEditPriority('Medium');
+      setEditPriority('');
     }
   };
 
   const cancelEdit = () => {
     setEditTask(null);
     setEditInput('');
-    setEditPriority('Medium');
+    setEditPriority('');
   };
 
   const onDrop = (dropResult, section) => {
@@ -107,6 +109,25 @@ const ToDo = () => {
     }
   };
 
+  // Fetch tasks and categorize them based on their status
+  const fetchTasks = async () => {
+    try {
+      const fetchedTasks = await getAllTasks();
+      setTasks({
+        todo: fetchedTasks.filter((task) => task.status === 'TODO'),
+        doing: fetchedTasks.filter((task) => task.status === 'DOING'),
+        done: fetchedTasks.filter((task) => task.status === 'DONE')
+      });
+    } catch (error) {
+      console.error('Error fetching tasks:', error);
+    }
+  };
+
+  // Call fetchTasks when the component mounts
+  useEffect(() => {
+    fetchTasks();
+  }, []);
+
   return (
     <div className="p-6 max-w-7xl mx-auto bg-white rounded-lg shadow-md">
       <h1 className="text-4xl font-bold text-center mb-6 text-gray-800">To-Do List</h1>
@@ -115,7 +136,7 @@ const ToDo = () => {
       <div className="flex mb-6 justify-center space-x-4">
         <input
           type="text"
-          value={taskInput}
+          value={title}
           onChange={handleInputChange}
           className="border border-gray-300 p-3 w-96 rounded-md focus:ring-2 focus:ring-blue-500"
           placeholder="Add a new task"
