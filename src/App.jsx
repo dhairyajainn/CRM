@@ -18,18 +18,17 @@ import { Context } from "./context/Context";
 import Layout from "./view/components/Layout";
 import Landing from "./view/components/Landing";
 import Dashboard from "./view/components/Dashboard";
+import Contact from "./view/components/Contact";
+
+
 
 // Example authentication check (replace with your actual logic)
 // const isAuthenticated = localStorage.getItem("user");
 
 function App() {
-  // const { user } = useAuth();
-
-  // console.log("User app", user);
   return (
     <Context>
       <BrowserRouter>
-        {/* {user ? <Sidebar /> : <NavBar />} */}
         <Routes>
           {/* Home page is public */}
           <Route path="/" element={<Landing />} />
@@ -62,6 +61,14 @@ function App() {
             element={
               <Layout>
                 <DealForm />
+              </Layout>
+            }
+          />
+          <Route
+            path="/contact"
+            element={
+              <Layout>
+                <Contact />
               </Layout>
             }
           />

@@ -45,11 +45,8 @@ const Sidebar = () => {
               Deal Form
             </Link>
           </li>
-          <li>
-            <Link to="/contactus" className="flex items-center p-3 text-gray-300 rounded hover:bg-gray-700">
-              <FaPhone className="mr-3" />
-              Contact Us
-            </Link>
+          <li className="p-3 hover:bg-gray-700">
+            <Link to="/contactus">Contact Us</Link>
           </li>
           <li>
             <Link to="/resetpassword" className="flex items-center p-3 text-gray-300 rounded hover:bg-gray-700">
