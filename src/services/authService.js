@@ -1,25 +1,45 @@
 import api from "./api";
 
 export const login = async (email, password) => {
-    const response = await api.post("/auth/login", {email, password});
-    // console.log(response)
+  try {
+    const response = await api.post("/auth/login", { email, password });
     return response.data;
-}
+  } catch (error) {
+    console.error("Error during login:", error.response?.data || error.message);
+    throw error;
+  }
+};
 
-export const register = async (name, email, password ) => {
-    const response = await api.post("/auth/register", {name, email, password});
+export const register = async (name, email, password) => {
+  try {
+    const response = await api.post("/auth/register", { name, email, password });
     return response.data;
-}
+  } catch (error) {
+    console.error("Error during registration:", error.response?.data || error.message);
+    throw error;
+  }
+};
 
-export const logout = async () =>{
+export const logout = async () => {
+  try {
     const response = await api.post("/auth/logout");
     return response.data;
-}
+  } catch (error) {
+    console.error("Error during logout:", error.response?.data || error.message);
+    throw error;
+  }
+};
 
 export const reset = async (email, password, oldPassword) => {
-    const response = await api.put("/auth/reset", {email, password, oldPassword});
+  try {
+    const response = await api.put("/auth/reset", { email, password, oldPassword });
     return response.data;
-}
+  } catch (error) {
+    console.error("Error during password reset:", error.response?.data || error.message);
+    throw error;
+  }
+};
+
 
 export const getUser = async () => {
     try {
