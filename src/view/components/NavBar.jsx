@@ -1,29 +1,22 @@
-import { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
-import { logout } from '../../services/authService';
-import { useAuth } from '../../context/Context';
+import { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { logout } from "../../services/authService";
+import { useAuth } from "../../context/Context";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
-  const {user, saveUser} = useAuth();
+
+  const { user, saveUser } = useAuth();
   const navigate = useNavigate();
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);
   };
 
-  // useEffect(() => {
-  //   const user = JSON.parse(localStorage.getItem('user'));
-  //   setIsAuthenticated(!!user);
-  // }, []);
-
   const handleLogout = () => {
     logout();
-    // localStorage.removeItem('user');
-    saveUser(null)
-    setIsAuthenticated(false);
-    navigate('/login');
+    saveUser(null);
+    navigate("/login");
   };
 
   return (
@@ -36,7 +29,10 @@ const Navbar = () => {
 
           {/* Menu Links */}
           <div className="hidden md:flex space-x-6 items-center">
-            <Link to="/" className="text-gray-600 dark:text-gray-200 hover:text-blue-500 transition duration-300">
+            <Link
+              to="/"
+              className="text-gray-600 dark:text-gray-200 hover:text-blue-500 transition duration-300"
+            >
               Home
             </Link>
             {/* <Link to="/dealform" className="text-gray-600 dark:text-gray-200 hover:text-blue-500 transition duration-300">
@@ -45,10 +41,16 @@ const Navbar = () => {
             <Link to="/todo" className="text-gray-600 dark:text-gray-200 hover:text-blue-500 transition duration-300">
               Todo
             </Link> */}
-            <Link to="/contactus" className="text-gray-600 dark:text-gray-200 hover:text-blue-500 transition duration-300">
+            <Link
+              to="/contactus"
+              className="text-gray-600 dark:text-gray-200 hover:text-blue-500 transition duration-300"
+            >
               Contact Us
             </Link>
-            <Link to="/aboutus" className="text-gray-600 dark:text-gray-200 hover:text-blue-500 transition duration-300">
+            <Link
+              to="/aboutus"
+              className="text-gray-600 dark:text-gray-200 hover:text-blue-500 transition duration-300"
+            >
               About Us
             </Link>
             {/* <Link to="/profile" className="text-gray-600 dark:text-gray-200 hover:text-blue-500 transition duration-300">
@@ -74,9 +76,25 @@ const Navbar = () => {
 
           {/* Hamburger Menu for Mobile */}
           <div className="md:hidden">
-            <button onClick={toggleMenu} className="text-gray-600 dark:text-gray-200 focus:outline-none">
-              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d={isOpen ? "M6 18L18 6M6 6l12 12" : "M4 6h16M4 12h16M4 18h16"} />
+            <button
+              onClick={toggleMenu}
+              className="text-gray-600 dark:text-gray-200 focus:outline-none"
+            >
+              <svg
+                className="w-6 h-6"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d={
+                    isOpen ? "M6 18L18 6M6 6l12 12" : "M4 6h16M4 12h16M4 18h16"
+                  }
+                />
               </svg>
             </button>
           </div>
@@ -85,7 +103,10 @@ const Navbar = () => {
         {/* Mobile Menu */}
         {isOpen && (
           <div className="md:hidden">
-            <Link to="/" className="block text-gray-600 dark:text-gray-200 px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-700">
+            <Link
+              to="/"
+              className="block text-gray-600 dark:text-gray-200 px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-700"
+            >
               Home
             </Link>
             {/* <Link to="/dealform" className="block text-gray-600 dark:text-gray-200 px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-700">
@@ -94,7 +115,10 @@ const Navbar = () => {
             <Link to="/todo" className="block text-gray-600 dark:text-gray-200 px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-700">
               Todo
             </Link> */}
-            <Link to="/contactus" className="block text-gray-600 dark:text-gray-200 px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-700">
+            <Link
+              to="/contactus"
+              className="block text-gray-600 dark:text-gray-200 px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-700"
+            >
               Contact
             </Link>
             {user ? (

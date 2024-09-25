@@ -1,6 +1,6 @@
 import { Link, useNavigate } from 'react-router-dom';
 import { logout } from '../../services/authService';
-import { useState } from 'react';
+
 const Sidebar = () => {
   // const [isAuthenticated, setIsAuthenticated] = useState(false);
   const navigate = useNavigate();
@@ -10,7 +10,7 @@ const Sidebar = () => {
     logout();
     localStorage.removeItem('user');
     // setIsAuthenticated(false);
-    navigate('/');
+    navigate('/login');
   };
   return (
     <div className="flex flex-col h-screen w-64 bg-gray-800 text-white">
@@ -32,7 +32,7 @@ const Sidebar = () => {
             <Link to="/dealform">Deal Form</Link>
           </li>
           <li className="p-3 hover:bg-gray-700">
-            <Link to="/contactlist">Contact</Link>
+            <Link to="/contact">Contact</Link>
           </li>
           <li className="p-3 hover:bg-gray-700">
             <Link to="/resetpassword">Reset Password</Link>

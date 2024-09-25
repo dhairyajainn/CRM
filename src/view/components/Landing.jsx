@@ -1,11 +1,9 @@
 import { Link } from "react-router-dom";
 import image from "../images/crm-home-stay-informed.svg";
-import { useAuth } from "../../context/Context";
+// import { useAuth } from "../../context/Context";
 import Navbar from "./NavBar";
 
 const Landing = () => {
-  const { user } = useAuth();
-//   console.log("user in landing page", user);
   return (
     <div className="flex flex-col ">
       <Navbar />

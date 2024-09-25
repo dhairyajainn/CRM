@@ -18,8 +18,6 @@ const Register = () => {
     } catch (error) {
       alert(error);
     }
-    
-
   };
 
   return (

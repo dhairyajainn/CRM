@@ -16,8 +16,8 @@ export const logout = async () =>{
     return response.data;
 }
 
-export const reset = async (email, password) => {
-    const response = await api.put("/auth/reset", {email, password});
+export const reset = async (email, password, oldPassword) => {
+    const response = await api.put("/auth/reset", {email, password, oldPassword});
     return response.data;
 }
 
