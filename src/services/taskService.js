@@ -7,9 +7,10 @@ export const taskSave = async (title,taskPriority) => {
       return response.data;
     } catch (error) {
       console.error("Error saving task:", error.response ? error.response.data : error.message);
-      throw error; // Rethrow to handle it where you call this function
+      throw error;
     }
   };
+
   export const updateTask = async (title,taskPriority,id)=> {
     try {
       const response = await api.post(`/tasks/update/${id}`, { title,taskPriority });

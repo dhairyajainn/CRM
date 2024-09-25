@@ -1,25 +1,25 @@
-import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { reset } from '../../services/authService';
-
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { reset } from "../../services/authService";
+import { useAuth } from "../../context/Context";
 const ResetPassword = () => {
-  const [oldPassword, setOldPassword] = useState('');
-  const [newPassword, setNewPassword] = useState('');
-  const [confirmPassword, setConfirmPassword] = useState('');
+  const [oldPassword, setOldPassword] = useState("");
+  const [newPassword, setNewPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
   const navigate = useNavigate();
-
+  const { user } = useAuth();
   const handlePasswordReset = async (e) => {
     e.preventDefault();
-    if (newPassword === confirmPassword) {
+    if (newPassword === confirmPassword && user) {
       try {
-        await reset(oldPassword, newPassword);
-        alert('Password has been reset successfully!');
-        navigate('/login');
+        await reset(user.email, newPassword, oldPassword);
+        alert("Password has been reset successfully!");
+        navigate("/login");
       } catch (error) {
-        alert('Failed to reset password. Please try again.', error);
+        alert("Failed to reset password. Please try again.", error);
       }
     } else {
-      alert('Passwords do not match.');
+      alert("Passwords do not match.");
     }
   };
 
@@ -33,7 +33,10 @@ const ResetPassword = () => {
         <form onSubmit={handlePasswordReset}>
           {/* Old Password */}
           <div className="mb-4">
-            <label htmlFor="oldPassword" className="block text-sm font-medium text-gray-700">
+            <label
+              htmlFor="oldPassword"
+              className="block text-sm font-medium text-gray-700"
+            >
               Old Password
             </label>
             <input
@@ -49,7 +52,10 @@ const ResetPassword = () => {
 
           {/* New Password */}
           <div className="mb-4">
-            <label htmlFor="newPassword" className="block text-sm font-medium text-gray-700">
+            <label
+              htmlFor="newPassword"
+              className="block text-sm font-medium text-gray-700"
+            >
               New Password
             </label>
             <input
@@ -65,7 +71,10 @@ const ResetPassword = () => {
 
           {/* Confirm Password */}
           <div className="mb-6">
-            <label htmlFor="confirmPassword" className="block text-sm font-medium text-gray-700">
+            <label
+              htmlFor="confirmPassword"
+              className="block text-sm font-medium text-gray-700"
+            >
               Confirm Password
             </label>
             <input
@@ -87,13 +96,6 @@ const ResetPassword = () => {
             Reset Password
           </button>
         </form>
-
-        <p className="mt-6 text-center text-gray-600">
-          Remember your password?{' '}
-          <a href="/login" className="text-indigo-500 hover:underline">
-            Log in
-          </a>
-        </p>
       </div>
     </div>
   );

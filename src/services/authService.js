@@ -32,7 +32,8 @@ export const logout = async () => {
 
 export const reset = async (email, password, oldPassword) => {
   try {
-    const response = await api.put("/auth/reset", { email, password, oldPassword });
+    const response = await api.post("/auth/reset", { email, password, oldPassword });
+    // console.log('response in auth services', response)
     return response.data;
   } catch (error) {
     console.error("Error during password reset:", error.response?.data || error.message);
