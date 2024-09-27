@@ -11,9 +11,9 @@ export const taskSave = async (title,taskPriority) => {
     }
   };
 
-  export const updateTask = async (title,taskPriority,id)=> {
+  export const updateTask = async (id, task)=> {
     try {
-      const response = await api.post(`/tasks/update/${id}`, { title,taskPriority });
+      const response = await api.post(`/tasks/update/${id}`,  task );
       console.log('response updateTask', response)
       return response.data;
     } catch (error) {
