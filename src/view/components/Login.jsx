@@ -10,16 +10,13 @@ const LoginPage = () => {
 
   const navigate = useNavigate();
   const {saveUser} = useAuth()
-  // const {isAuthenticated, setIsAuthenticated} = useState(user);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      // console.log("handle login called")
       const userData = await login(email, password);
       saveUser(userData);
       
-      // localStorage.setItem('user', JSON.stringify(userData));
       navigate('/dashboard');
     } catch (error) {
       console.log(error);
@@ -75,11 +72,11 @@ const LoginPage = () => {
               Sign Up
             </Link>
           </p>
-          {/* <p className="text-sm text-gray-600 dark:text-gray-400 mt-2">
-            <Link to="/resetpassword" className="text-blue-500 hover:underline">
-              Reset Password
+          <p className="text-sm text-gray-600 dark:text-gray-400 mt-2">
+            <Link to="/forgot-password" className="text-blue-500 hover:underline">
+              Forgot Password
             </Link>
-          </p> */}
+          </p>
         </div>
       </div>
     </div>

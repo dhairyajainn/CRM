@@ -14,6 +14,8 @@ import Layout from "./view/components/Layout";
 import Landing from "./view/components/Landing";
 import Dashboard from "./view/components/Dashboard";
 import Contact from "./view/components/Contact";
+import AdminDashboard from "./view/screens/AdminDashboard";
+import ForgetPassword from "./view/components/ForgetPassword";
 
 function App() {
   return (
@@ -22,6 +24,7 @@ function App() {
         <Routes>
           {/* Home page is public */}
           <Route path="/" element={<Landing />} />
+          <Route path="/admin" element={<AdminDashboard />} />
 
           <Route
             path="/dashboard"
@@ -77,6 +80,7 @@ function App() {
           <Route path="/login" element={<LoginPage />} />
           <Route path="/signup" element={<Register />} />
           <Route path="/aboutus" element={<AboutUs />} />
+          <Route path="/forgot-password" element={<ForgetPassword />} />
         </Routes>
       </BrowserRouter>
     </Context>
