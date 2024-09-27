@@ -8,7 +8,6 @@ const AuthContext = createContext();
 export const Context = ({ children }) => {
   const [user, setUser] = useState(null); // Initial state as null
   const [loading, setLoading] = useState(true); // Start as true since you're fetching data
-  // const [isAuthenticed, setIsAuthenticated] = useState(false);
   const saveUser = (userData) => {
     setUser(userData)
   }
@@ -18,28 +17,17 @@ export const Context = ({ children }) => {
       console.log("loadUser called");
       setLoading(true); // Show loading
       try {
-        const userData = await getUser(); // Fetch user data from backend
-        // console.log("userData in loadUser:>> ", userData);
-        // if(userData) {
-        //   setIsAuthenticated(true);
-        // }
+        const userData = await getUser();
         setUser(userData); // Update the user state
       } catch (error) {
         console.error("Failed to load user:", error);
+        throw error;
       } finally {
-        setLoading(false); // Hide loading once done
+        setLoading(false); 
       }
     };
-    // Call the loadUser function to fetch user data
     loadUser();
   }, []);
-
-  // Debugging: log the user data after it's updated
-  // useEffect(() => {
-  //   if (user) {
-  //     // console.log("user :", user);
-  //   }
-  // }, [user]);
   
   return (
     <AuthContext.Provider value={{ user, loading, saveUser }}>
