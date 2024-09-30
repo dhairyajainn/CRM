@@ -1,6 +1,7 @@
-import { useState } from 'react';
-import { Container, Draggable } from 'react-smooth-dnd';
-import { taskSave } from '../../services/taskService';
+import { useState, useEffect } from 'react';
+import { Container} from 'react-smooth-dnd';
+import { getAllTasks, taskSave, updateTask } from '../../services/taskService';
+
 
 const ToDo = () => {
   const [tasks, setTasks] = useState({
@@ -9,14 +10,15 @@ const ToDo = () => {
     done: []
   });
 
-  const [taskInput, setTaskInput] = useState('');
-  const [taskPriority, setTaskPriority] = useState('High');
+  const [title, setTitle] = useState('');
+  const [taskPriority, setTaskPriority] = useState('Medium');
   const [editTask, setEditTask] = useState(null);
   const [editInput, setEditInput] = useState('');
   const [editPriority, setEditPriority] = useState('Medium');
 
+
   const handleInputChange = (e) => {
-    setTaskInput(e.target.value);
+    setTitle(e.target.value);
   };
 
   const handlePriorityChange = (e) => {
@@ -24,16 +26,16 @@ const ToDo = () => {
   };
 
   const addTask = async () => {
-    if (taskInput.trim()) {
-      const newTask = { title: taskInput, priority: taskPriority };
+    if (title.trim()) {
   
       try {
-        await taskSave(newTask.title); // Only send the title
+        console.log('taskPriority', taskPriority)
+        await taskSave(title,taskPriority); // Only send the title
         setTasks((prevTasks) => ({
           ...prevTasks,
-          todo: [...prevTasks.todo, newTask]
+          todo: [...prevTasks.todo, {title,priority:taskPriority}]
         }));
-        setTaskInput('');
+        setTitle('');
         setTaskPriority('Medium');
       } catch (error) {
         console.error("Failed to save task:", error);
@@ -41,7 +43,11 @@ const ToDo = () => {
     }
   };
 
-  const moveTask = (task, from, to) => {
+  const moveTask = async (task, from, to) => {
+    console.log("from:",from)
+    console.log("to:",to)
+    task.status=to;
+    console.log(task)
     setTasks((prevTasks) => {
       const fromTasks = prevTasks[from].filter((t) => t.title !== task.title);
       const toTasks = [...prevTasks[to], task];
@@ -51,6 +57,7 @@ const ToDo = () => {
         [to]: toTasks
       };
     });
+    await updateTask(task._id, task);
   };
 
   const handleEditChange = (e) => {
@@ -67,18 +74,20 @@ const ToDo = () => {
     setEditPriority(task.priority);
   };
 
-  const saveEdit = () => {
+  const saveEdit = async () => {
     if (editInput.trim()) {
+      const updatedTask = { title: editInput, priority: editPriority };  // Change text to title
       setTasks((prevTasks) => {
         const fromTasks = prevTasks[editTask.section].filter(
           (t) => t.title !== editTask.title  // Change from task.text to task.title
         );
-        const updatedTask = { title: editInput, priority: editPriority };  // Change text to title
+        
         return {
           ...prevTasks,
           [editTask.section]: [...fromTasks, updatedTask]
         };
       });
+      await updateTask(editTask._id, updatedTask)
       setEditTask(null);
       setEditInput('');
       setEditPriority('Medium');
@@ -91,21 +100,41 @@ const ToDo = () => {
     setEditPriority('Medium');
   };
 
-  const onDrop = (dropResult, section) => {
-    const { removedIndex, addedIndex, payload } = dropResult;
+  // const onDrop = (dropResult, section) => {
+  //   const { removedIndex, addedIndex, payload } = dropResult;
 
-    if (removedIndex !== null || addedIndex !== null) {
-      const updatedTasks = { ...tasks };
-      const movedTask = payload;
+  //   if (removedIndex !== null || addedIndex !== null) {
+  //     const updatedTasks = { ...tasks };
+  //     const movedTask = payload;
 
-      // Remove from the current section
-      updatedTasks[section].splice(removedIndex, 1);
-      // Add to the new section
-      updatedTasks[section].splice(addedIndex, 0, movedTask);
+  //     // Remove from the current section
+  //     updatedTasks[section].splice(removedIndex, 1);
+  //     // Add to the new section
+  //     updatedTasks[section].splice(addedIndex, 0, movedTask);
 
-      setTasks(updatedTasks);
+  //     setTasks(updatedTasks);
+  //   }
+  // };
+
+  // Fetch tasks and categorize them based on their status
+  const fetchTasks = async () => {
+    try {
+      const fetchedTasks = await getAllTasks();
+      
+      setTasks({
+        todo: fetchedTasks.filter((task) => task.status === 'todo'),
+        doing: fetchedTasks.filter((task) => task.status === 'doing'),
+        done: fetchedTasks.filter((task) => task.status === 'done')
+      });
+    } catch (error) {
+      console.error('Error fetching tasks:', error);
     }
   };
+
+  // Call fetchTasks when the component mounts
+  useEffect(() => {
+    fetchTasks();
+  }, []);
 
   return (
     <div className="p-6 max-w-7xl mx-auto bg-white rounded-lg shadow-md">
@@ -115,7 +144,7 @@ const ToDo = () => {
       <div className="flex mb-6 justify-center space-x-4">
         <input
           type="text"
-          value={taskInput}
+          value={title}
           onChange={handleInputChange}
           className="border border-gray-300 p-3 w-96 rounded-md focus:ring-2 focus:ring-blue-500"
           placeholder="Add a new task"
@@ -186,7 +215,7 @@ const ToDo = () => {
             >
               <div className="space-y-4 h-96 overflow-y-auto">
                 {tasks[section].map((task) => (
-                  <Draggable key={task.title}> {/* Changed key to task.title */}
+                  <div key={task.title}> {/* Changed key to task.title */}
                     <div className="flex justify-between items-center p-3 bg-white rounded-md shadow-sm">
                       <span className="font-medium text-gray-700">
                         {task.title}{' '}
@@ -227,7 +256,7 @@ const ToDo = () => {
                         )}
                       </div>
                     </div>
-                  </Draggable>
+                  </div>  
                 ))}
               </div>
             </Container>

@@ -17,7 +17,7 @@ const ForgetPassword = () => {
     setIsLoading(true);
     try {
       await forgotPassword(email);
-      alert("OTP sent successfully.");
+      alert("OTP bhej diya bhai, mail check karle.");
       setStep(2);
     } catch (error) {
       setError(error.response?.data?.message || "Failed to send OTP. Please try again.");
