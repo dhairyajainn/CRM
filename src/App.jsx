@@ -16,6 +16,7 @@ import Dashboard from "./view/components/Dashboard";
 import Contact from "./view/components/Contact";
 import AdminDashboard from "./view/screens/AdminDashboard";
 import ForgetPassword from "./view/components/ForgetPassword";
+import UserVerification from "./view/components/UserVerification";
 
 function App() {
   return (
@@ -71,6 +72,14 @@ function App() {
             element={
               <Layout>
                 <ResetPass />
+              </Layout>
+            }
+          />
+          <Route
+            path="/userverification"
+            element={
+              <Layout>
+                <UserVerification />
               </Layout>
             }
           />
