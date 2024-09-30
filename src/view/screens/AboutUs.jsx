@@ -1,5 +1,6 @@
 import nitesh from '../images/nitesh.jpeg'
 import dhairya from '../images/Dhairya.png'
+import ujjwal from '../images/ujjwal.jpeg'
 import { Link } from 'react-router-dom';
 
 const AboutUs = () => {
@@ -62,11 +63,11 @@ const AboutUs = () => {
                         {/* Team Member 3 */}
                         <div className="bg-white rounded-lg p-6 shadow-md">
                             <img
-                                src="https://via.placeholder.com/150"
+                                src={ujjwal}
                                 alt="Team Member 3"
                                 className="rounded-full w-32 h-32 mx-auto mb-4"
                             />
-                            <h3 className="text-xl font-semibold text-gray-800">Naved Daiya</h3>
+                            <h3 className="text-xl font-semibold text-gray-800">Ujjwal Kumar</h3>
                             <p className="text-gray-600">Developer</p>
                         </div>
                     </div>
