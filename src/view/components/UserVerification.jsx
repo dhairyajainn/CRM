@@ -1,8 +1,10 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { useAuth } from '../../context/Context'; // Import the useAuth hook
+import { dummyUser } from "../../services/dummy";
 
 const UserVerificationList = () => {
   const { user } = useAuth();
+  // console.log(user);
 
   // Ensure user object has an id and is in an array format.
   const [users, setUsers] = useState([]);
@@ -61,6 +63,18 @@ const UserVerificationList = () => {
                     <option value="Developer Admin">Developer Admin</option>
                     <option value="Marketing Admin">Marketing Admin</option>
                     <option value="Employee">Employee</option>
+                  </select>
+                </div>
+                {/* Dropdown for Team Selection */}
+                <div className="mt-2">
+                  <label className="block text-sm font-medium text-gray-700">Assign Team</label>
+                  <select
+                    value={user.team}
+                    onChange={(e) => handleRoleChange(user.id, e.target.value)}
+                    className="w-full px-4 py-2 mt-1 border rounded-md focus:ring focus:ring-indigo-200 focus:border-indigo-300"
+                  >
+                    <option value="Developer Admin">Developer Team</option>
+                    <option value="Marketing Admin">Marketing Team</option>
                   </select>
                 </div>
               </div>

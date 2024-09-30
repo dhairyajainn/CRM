@@ -30,8 +30,8 @@ const DealForm = () => {
     amount: '',
     description: ''
   });
-  const [isEditing, setIsEditing] = useState(false); // Track if we're editing
-  const [editingDealId, setEditingDealId] = useState(null); // Track which deal is being edited
+  const [isEditing, setIsEditing] = useState(false);
+  const [editingDealId, setEditingDealId] = useState(null);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -44,12 +44,34 @@ const DealForm = () => {
     if (isEditing) {
       // Update existing deal
       const updatedPipeline = { ...pipeline };
-      Object.keys(updatedPipeline).forEach((stageId) => {
-        updatedPipeline[stageId] = updatedPipeline[stageId].map((deal) =>
-          deal.id === editingDealId ? { ...deal, ...formData, currentStage: formData.stage } : deal
+      const oldStage = Object.keys(updatedPipeline).find(stageId =>
+        updatedPipeline[stageId].some(deal => deal.id === editingDealId)
+      );
+
+      if (oldStage) {
+        // Remove the deal from its old stage
+        updatedPipeline[oldStage] = updatedPipeline[oldStage].filter(
+          deal => deal.id !== editingDealId
         );
-      });
-      setPipeline(updatedPipeline);
+
+        // Add the updated deal to the new stage
+        const updatedDeal = {
+          id: editingDealId,
+          name: formData.dealName,
+          company: formData.companyName,
+          contact: formData.contactName,
+          amount: formData.amount,
+          description: formData.description,
+          currentStage: formData.stage
+        };
+
+        updatedPipeline[formData.stage] = [
+          ...updatedPipeline[formData.stage],
+          updatedDeal
+        ];
+
+        setPipeline(updatedPipeline);
+      }
     } else {
       // Add new deal
       const newDeal = {

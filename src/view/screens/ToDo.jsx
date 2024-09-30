@@ -46,7 +46,6 @@ const ToDo = () => {
   const moveTask = async (task, from, to) => {
     console.log("from:",from)
     console.log("to:",to)
-    task.status=to;
     console.log(task)
     setTasks((prevTasks) => {
       const fromTasks = prevTasks[from].filter((t) => t.title !== task.title);
@@ -58,6 +57,7 @@ const ToDo = () => {
       };
     });
     await updateTask(task._id, task);
+    task.status=to;
   };
 
   const handleEditChange = (e) => {
