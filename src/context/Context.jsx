@@ -8,27 +8,41 @@ const AuthContext = createContext();
 export const Context = ({ children }) => {
   const [user, setUser] = useState(null); // Initial state as null
   const [loading, setLoading] = useState(true); // Start as true since you're fetching data
+  const [error, setError] = useState('')
+  
   const saveUser = (userData) => {
     setUser(userData)
   }
    
   useEffect(() => {
+    let isMounted = true; // Track whether the component is mounted
+  
     const loadUser = async () => {
       console.log("loadUser called");
-      setLoading(true); // Show loading
+      setLoading(true);
       try {
         const userData = await getUser();
-        setUser(userData); // Update the user state
+        if (isMounted) {
+          setUser(userData); 
+        }
       } catch (error) {
         console.error("Failed to load user:", error);
-        throw error;
+        if (isMounted) {
+          setError("Failed to load user");
+        }
       } finally {
-        setLoading(false); 
+        if (isMounted) {
+          setLoading(false); 
+        }
       }
     };
-    loadUser();
-  }, []);
   
+    loadUser();
+
+    return () => {
+      isMounted = false;
+    };
+  }, []);
   return (
     <AuthContext.Provider value={{ user, loading, saveUser }}>
       {children}
@@ -36,5 +50,5 @@ export const Context = ({ children }) => {
   );
 };
 
-// Custom hook to use the AuthContext
+// // Custom hook to use the AuthContext
 export const useAuth = () => useContext(AuthContext);
