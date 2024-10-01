@@ -7,11 +7,11 @@ const AuthContext = createContext();
 // Create the provider component
 export const Context = ({ children }) => {
   const [user, setUser] = useState(null); // Initial state as null
-  const [loading, setLoading] = useState(true); // Start as true since you're fetching data
+  const [loading, setLoading] = useState(false); // Start as true since you're fetching data
   const saveUser = (userData) => {
-    setUser(userData)
-  }
-   
+    setUser(userData);
+  };
+
   useEffect(() => {
     const loadUser = async () => {
       console.log("loadUser called");
@@ -23,12 +23,12 @@ export const Context = ({ children }) => {
         console.error("Failed to load user:", error);
         throw error;
       } finally {
-        setLoading(false); 
+        setLoading(false);
       }
     };
     loadUser();
   }, []);
-  
+
   return (
     <AuthContext.Provider value={{ user, loading, saveUser }}>
       {children}

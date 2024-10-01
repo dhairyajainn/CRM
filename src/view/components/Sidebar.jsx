@@ -8,15 +8,15 @@ import {
   FaUsers,
   FaLock,
 } from "react-icons/fa";
+import { FaPersonCircleCheck } from "react-icons/fa6";
 import { dummyUser } from "../../services/dummy";
 
 const Sidebar = () => {
-  const role = dummyUser[4].role;
+  const role = dummyUser[0].role;
   const navigate = useNavigate();
 
   const handleLogout = () => {
     logout();
-    localStorage.removeItem("user");
     navigate("/login");
   };
 
@@ -84,7 +84,7 @@ const AdminSidebar = ({ handleLogout }) => {
             <Link to="/contact">Contact</Link>
           </li>
           <li className=" flex items-center p-3 text-gray-300 rounded hover:bg-gray-700">
-            <FaUsers className="mr-3" />
+            <FaPersonCircleCheck className="mr-3" />
             <Link to="/userverification">User Verification</Link>
           </li>
           <li>
@@ -160,7 +160,7 @@ const SubAdminSidebar = ({ handleLogout }) => {
             </Link>
           </li>
           <li className=" flex items-center p-3 text-gray-300 rounded hover:bg-gray-700">
-            <FaUsers className="mr-3" />
+            <FaPersonCircleCheck className="mr-3" />
             <Link to="/userverification">User Verification</Link>
           </li>
           <li>
