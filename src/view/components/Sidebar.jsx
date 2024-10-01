@@ -8,19 +8,37 @@ import {
   FaUsers,
   FaLock,
 } from "react-icons/fa";
-// import { dummyUser } from "../../services/dummy";
+import { dummyUser } from "../../services/dummy";
 
 const Sidebar = () => {
+  const role = dummyUser[0].role;
+  console.log(role);
+
   const navigate = useNavigate();
 
   // console.log(dummyUser[3].role);
 
   const handleLogout = () => {
     logout();
-
+    localStorage.removeItem("user");
     navigate("/login");
   };
 
+  {
+    if (role === "admin") {
+    } else if (role === "marAdmin") {
+      return <h1 className="text-white">Marketing </h1>;
+    } else if (role === "devAdmin") {
+      return <h1 className="text-white"> Developer</h1>;
+    } else if (role === "emp") {
+      return <h1 className="text-white">Employee</h1>;
+    }
+  }
+};
+
+export default Sidebar;
+
+const AdminSidebar = () => {
   return (
     <div className="flex flex-col h-screen w-64 bg-gray-900 text-gray-100 shadow-lg">
       {/* Sidebar Header */}
@@ -96,15 +114,7 @@ const Sidebar = () => {
   );
 };
 
-export default Sidebar;
-
-export const Admin = () => {
-  const navigate = useNavigate();
-  const handleLogout = () => {
-    logout();
-
-    navigate("/login");
-  };
+const SubAdminSidebar = ()=>{
   return (
     <div className="flex flex-col h-screen w-64 bg-gray-900 text-gray-100 shadow-lg">
       {/* Sidebar Header */}
@@ -177,5 +187,5 @@ export const Admin = () => {
         </button>
       </div>
     </div>
-  )
+  );
 }
