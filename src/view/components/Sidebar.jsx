@@ -4,7 +4,7 @@ import { FaHome, FaUser, FaClipboardList, FaHandshake, FaUsers, FaLock } from "r
 import { dummyUser } from "../../services/dummy";
 
 const Sidebar = () => {
-  const role = dummyUser[0].role;
+  const role = dummyUser[3].role;
   const navigate = useNavigate();
 
   const handleLogout = () => {
