@@ -10,14 +10,17 @@ import {
 } from "react-icons/fa";
 import { FaPersonCircleCheck } from "react-icons/fa6";
 import { dummyUser } from "../../services/dummy";
+import { useAuth } from "../../context/Context";
 
 const Sidebar = () => {
-  const role = dummyUser[0].role;
+  const role = dummyUser[3].role;
   const navigate = useNavigate();
+  const {saveUser} = useAuth()
 
   const handleLogout = () => {
     logout();
-    navigate("/login");
+    saveUser(null);
+    navigate("/");
   };
 
   return (

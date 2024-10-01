@@ -14,7 +14,6 @@ import Layout from "./view/components/Layout";
 import Landing from "./view/components/Landing";
 import Dashboard from "./view/components/Dashboard";
 import Contact from "./view/components/Contact";
-import AdminDashboard from "./view/screens/AdminDashboard";
 import ForgetPassword from "./view/components/ForgetPassword";
 import UserVerification from "./view/components/UserVerification";
 
@@ -25,7 +24,6 @@ function App() {
         <Routes>
           {/* Home page is public */}
           <Route path="/" element={<Landing />} />
-          <Route path="/admin" element={<AdminDashboard />} />
 
           <Route
             path="/dashboard"
