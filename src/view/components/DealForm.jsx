@@ -148,7 +148,7 @@ const DealForm = () => {
     }
   };
 
-  const role = dummyUser[3].role;
+  const role = dummyUser[1].role;
 
   const handleAssign = () => {
     setListModal(true);
