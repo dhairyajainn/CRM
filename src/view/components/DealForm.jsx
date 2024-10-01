@@ -192,15 +192,23 @@ const DealForm = () => {
                           Amount: ${deal.amount}
                         </p>
                         {role === "admin" ? (
-                          <button
-                            onClick={() => handleEdit(deal)}
-                            className="mt-2 px-4 py-2 bg-yellow-500 text-white rounded-lg hover:bg-yellow-600 transition duration-300"
-                          >
-                            Edit
-                          </button>
+                          <>
+                            <button
+                              onClick={() => handleEdit(deal)}
+                              className="mt-2 px-4 py-2 bg-yellow-500 text-white rounded-lg hover:bg-yellow-600 transition duration-300"
+                            >
+                              Edit
+                            </button>
+                            <button
+                              onClick={() => handleAssignToTeam(deal)}
+                              className="mt-2 px-4 py-2 bg-yellow-500 text-white rounded-lg hover:bg-yellow-600 transition duration-300"
+                            >
+                              Assign To Team
+                            </button>
+                          </>
                         ) : role === "marAdmin" || role === "devAdmin" ? (
                           <button
-                            onClick={() => handleAssign(deal)}
+                            onClick={() => handleAssignToEmp(deal)}
                             className="mt-2 px-4 py-2 bg-yellow-500 text-white rounded-lg hover:bg-yellow-600 transition duration-300"
                           >
                             Assign To Employee
