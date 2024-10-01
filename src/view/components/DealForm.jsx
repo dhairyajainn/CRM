@@ -333,32 +333,34 @@ const DealForm = () => {
       )}
 
       {listModal && (
-        <div className="fixed inset-0 flex items-center justify-center bg-gray-800 bg-opacity-30 z-50">
-          <div className="bg-white p-8 rounded-lg shadow-lg w-96 max-h-screen overflow-y-auto relative">
-            {/* Close Button */}
-            <button
-              onClick={() => setListModal(false)}
-              className="absolute top-2 right-2 text-gray-600 hover:text-gray-800"
-            >
-              <IoMdClose size={24} />
-            </button>
+        <div className="fixed inset-0 flex items-center justify-center bg-gray-900 bg-opacity-50 z-50">
+        <div className="bg-white p-8 rounded-xl shadow-xl w-full max-w-md max-h-[80vh] overflow-y-auto relative">
+          {/* Close Button */}
+          <button
+            onClick={() => setListModal(false)}
+            className="absolute top-4 right-4 p-2 text-gray-600 hover:text-gray-800 focus:outline-none focus:ring-2 focus:ring-purple-500 rounded"
+          >
+            <IoMdClose size={24} />
+          </button>
 
-            {/* Modal Content */}
-            <h2 className="text-2xl font-semibold mb-4">List of employees</h2>
-            <ul className="list-disc pl-6 space-y-2">
-              {/* {listItems.map((item, index) => (
-                  <li key={index} className="text-gray-700">
-                    {item}
-                  </li>
-                ))} */}
-              {dummyUser
-                .filter((user) => user.team === "developer")
-                .map((name, index) => (
-                  <li key={index}>{name.name}</li>
-                ))}
-            </ul>
-          </div>
+          {/* Modal Header */}
+          <h2 className="text-3xl font-bold text-gray-900 mb-6">List of Employees</h2>
+
+          {/* Filtered List of Employees */}
+          <ul className="space-y-3">
+            {dummyUser
+              .filter((user) => user.team === "developer")
+              .map((user, index) => (
+                <li
+                  key={index}
+                  className="text-lg text-gray-700 bg-gray-100 p-3 rounded-md hover:bg-purple-100 transition-all duration-300"
+                >
+                  {user.name}
+                </li>
+              ))}
+          </ul>
         </div>
+      </div>
       )}
     </div>
   );
