@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Container, Draggable } from "react-smooth-dnd";
 import { dummyUser } from "../../services/dummy";
+import { IoMdClose } from "react-icons/io";
 
 const initialPipeline = {
   qualification: [],
@@ -33,6 +34,7 @@ const DealForm = () => {
   });
   const [isEditing, setIsEditing] = useState(false);
   const [editingDealId, setEditingDealId] = useState(null);
+  const [listModal, setListModal] = useState(false);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -146,8 +148,11 @@ const DealForm = () => {
     }
   };
 
-  const role = dummyUser[0].role;
+  const role = dummyUser[3].role;
 
+  const handleAssign = () => {
+    setListModal(true);
+  };
   return (
     <div className="p-6 max-w-7xl mx-auto bg-white rounded-lg shadow-lg">
       <h1 className="text-4xl font-bold text-center mb-6 text-gray-800">
@@ -323,6 +328,35 @@ const DealForm = () => {
                 </button>
               </div>
             </form>
+          </div>
+        </div>
+      )}
+
+      {listModal && (
+        <div className="fixed inset-0 flex items-center justify-center bg-gray-800 bg-opacity-30 z-50">
+          <div className="bg-white p-8 rounded-lg shadow-lg w-96 max-h-screen overflow-y-auto relative">
+            {/* Close Button */}
+            <button
+              onClick={() => setListModal(false)}
+              className="absolute top-2 right-2 text-gray-600 hover:text-gray-800"
+            >
+              <IoMdClose size={24} />
+            </button>
+
+            {/* Modal Content */}
+            <h2 className="text-2xl font-semibold mb-4">List of employees</h2>
+            <ul className="list-disc pl-6 space-y-2">
+              {/* {listItems.map((item, index) => (
+                  <li key={index} className="text-gray-700">
+                    {item}
+                  </li>
+                ))} */}
+              {dummyUser
+                .filter((user) => user.team === "developer")
+                .map((name, index) => (
+                  <li key={index}>{name.name}</li>
+                ))}
+            </ul>
           </div>
         </div>
       )}
