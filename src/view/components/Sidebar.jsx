@@ -13,9 +13,9 @@ import { dummyUser } from "../../services/dummy";
 import { useAuth } from "../../context/Context";
 
 const Sidebar = () => {
-  const role = dummyUser[3].role;
+  const role = dummyUser[0].role;
   const navigate = useNavigate();
-  const {saveUser} = useAuth()
+  const { saveUser } = useAuth();
 
   const handleLogout = () => {
     logout();
@@ -105,7 +105,7 @@ const AdminSidebar = ({ handleLogout }) => {
       {/* Logout Button */}
       <div className="p-4">
         <button
-          className="flex items-center justify-center w-full bg-red-600 text-white p-2 rounded hover:bg-red-700 transition duration-200"
+          className="flex items-center justify-center w-full bg-blue-500 text-white p-2 rounded hover:bg-blue-600 transition duration-200"
           onClick={handleLogout}
         >
           Logout
@@ -181,7 +181,7 @@ const SubAdminSidebar = ({ handleLogout }) => {
       {/* Logout Button */}
       <div className="p-4">
         <button
-          className="flex items-center justify-center w-full bg-red-600 text-white p-2 rounded hover:bg-red-700 transition duration-200"
+          className="flex items-center justify-center w-full bg-blue-500 text-white p-2 rounded hover:bg-blue-600 transition duration-200"
           onClick={handleLogout}
         >
           Logout
@@ -244,7 +244,7 @@ const EmployeeSidebar = ({ handleLogout }) => {
       {/* Logout Button */}
       <div className="p-4">
         <button
-          className="flex items-center justify-center w-full bg-red-600 text-white p-2 rounded hover:bg-red-700 transition duration-200"
+          className="flex items-center justify-center w-full bg-blue-500 text-white p-2 rounded hover:bg-blue-600 transition duration-200"
           onClick={handleLogout}
         >
           Logout

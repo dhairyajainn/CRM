@@ -1,4 +1,4 @@
-import Sidebar from './SideBar';
+import Sidebar from "../Sidebar";
 
 const Layout = ({ children }) => {
   return (
@@ -9,11 +9,9 @@ const Layout = ({ children }) => {
       </div>
 
       {/* Main Content Section */}
-      <div className="flex-1 bg-gray-100 p-4">
-        {children}
-      </div>
+      <div className="flex-1 bg-gray-100 p-4">{children}</div>
     </div>
   );
-}
+};
 
 export default Layout;

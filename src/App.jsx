@@ -10,12 +10,14 @@ import ResetPass from "./view/components/ResetPass";
 import Profile from "./view/screens/Profile";
 import ContactUs from "./view/screens/ContactUs";
 import AboutUs from "./view/screens/AboutUs";
-import Layout from "./view/components/Layout";
+import Layout from "./view/components/Layout/Layout";
 import Landing from "./view/components/Landing";
 import Dashboard from "./view/components/Dashboard";
 import Contact from "./view/components/Contact";
 import ForgetPassword from "./view/components/ForgetPassword";
 import UserVerification from "./view/components/UserVerification";
+import Home from "./view/screens/Home";
+import MainLayout from "./view/components/Layout/MainLayout";
 
 function App() {
   return (
@@ -24,6 +26,32 @@ function App() {
         <Routes>
           {/* Home page is public */}
           <Route path="/" element={<Landing />} />
+
+          {/* Routes for Landing Page */}
+          <Route
+            path="/home"
+            element={
+              <MainLayout>
+                <Home />
+              </MainLayout>
+            }
+          />
+          <Route
+            path="/contactus"
+            element={
+              <MainLayout>
+                <ContactUs />
+              </MainLayout>
+            }
+          />
+          <Route
+            path="/aboutus"
+            element={
+              <MainLayout>
+                <AboutUs />
+              </MainLayout>
+            }
+          />
 
           <Route
             path="/dashboard"
@@ -83,10 +111,10 @@ function App() {
           />
 
           {/* Public routes */}
-          <Route path="/contactus" element={<ContactUs />} />
+          {/* <Route path="/contactus" element={<ContactUs />} /> */}
           <Route path="/login" element={<LoginPage />} />
           <Route path="/signup" element={<Register />} />
-          <Route path="/aboutus" element={<AboutUs />} />
+          {/* <Route path="/aboutus" element={<AboutUs />} /> */}
           <Route path="/forgot-password" element={<ForgetPassword />} />
         </Routes>
       </BrowserRouter>
