@@ -35,6 +35,7 @@ const DealForm = () => {
   const [isEditing, setIsEditing] = useState(false);
   const [editingDealId, setEditingDealId] = useState(null);
   const [listModal, setListModal] = useState(false);
+  const [teamListModal, setTeamListModal] = useState(false);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -148,10 +149,11 @@ const DealForm = () => {
     }
   };
 
-  const role = dummyUser[1].role;
+  const role = dummyUser[0].role;
 
   const handleAssign = () => {
     setListModal(true);
+    setTeamListModal(true);
   };
   return (
     <div className="p-6 max-w-7xl mx-auto bg-white rounded-lg shadow-lg">
@@ -205,7 +207,7 @@ const DealForm = () => {
                               Edit
                             </button>
                             <button
-                              onClick={() => handleAssignToTeam(deal)}
+                              onClick={handleAssign}
                               className="mt-2 px-4 py-2 bg-yellow-500 text-white rounded-lg hover:bg-yellow-600 transition duration-300"
                             >
                               Assign To Team
@@ -213,7 +215,7 @@ const DealForm = () => {
                           </>
                         ) : role === "marAdmin" || role === "devAdmin" ? (
                           <button
-                            onClick={() => handleAssignToEmp(deal)}
+                            onClick={handleAssign}
                             className="mt-2 px-4 py-2 bg-yellow-500 text-white rounded-lg hover:bg-yellow-600 transition duration-300"
                           >
                             Assign To Employee
@@ -348,7 +350,7 @@ const DealForm = () => {
               onClick={() => setListModal(false)}
               className="absolute top-2 right-2 text-gray-600 hover:text-gray-800"
             >
-              <IoMdClose size={24} />
+              Close
             </button>
 
             {/* Modal Content */}
@@ -359,6 +361,28 @@ const DealForm = () => {
                 .map((name, index) => (
                   <li key={index}>{name.name}</li>
                 ))}
+            </ul>
+          </div>
+        </div>
+      )}
+
+      {teamListModal && (
+        <div className="fixed inset-0 flex items-center justify-center bg-gray-800 bg-opacity-30 z-50">
+          <div className="bg-white p-8 rounded-lg shadow-lg w-96 max-h-screen overflow-y-auto relative">
+            {/* Close Button */}
+            <button
+              onClick={() => setTeamListModal(false)}
+              className="absolute top-2 right-2 text-gray-600 hover:text-gray-800"
+            >
+              Close
+            </button>
+
+            {/* Modal Content */}
+            <h2 className="text-2xl font-semibold mb-4">List of Team</h2>
+            <ul className="list-disc pl-6 space-y-2">
+              {dummyUser.map((user, index) => (
+                <li key={index}>{user.team}</li>
+              ))}
             </ul>
           </div>
         </div>
