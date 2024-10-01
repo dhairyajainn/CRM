@@ -148,7 +148,7 @@ const DealForm = () => {
     }
   };
 
-  const role = dummyUser[3].role;
+  const role = dummyUser[1].role;
 
   const handleAssign = () => {
     setListModal(true);
@@ -354,11 +354,6 @@ const DealForm = () => {
             {/* Modal Content */}
             <h2 className="text-2xl font-semibold mb-4">List of employees</h2>
             <ul className="list-disc pl-6 space-y-2">
-              {/* {listItems.map((item, index) => (
-                  <li key={index} className="text-gray-700">
-                    {item}
-                  </li>
-                ))} */}
               {dummyUser
                 .filter((user) => user.team === "developer")
                 .map((name, index) => (
