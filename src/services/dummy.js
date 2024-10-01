@@ -53,7 +53,7 @@ export const dummyUser = [
       "password": "hashed_password_654",
       "otp": "654321",
       "otpExpiry": "2024-09-28T13:30:00Z",
-      "team": "noVerify",
+      "team": "marketing",
       "role": "emp",
       "verify": false,
       "createdAt": "2024-09-18T16:40:00Z",
